@@ -1,0 +1,87 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ticket_fixtures",
+  "info": {
+    "singularName": "ticket-fixture",
+    "pluralName": "ticket-fixtures",
+    "displayName": "Ticket/Fixture",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug_title": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "home_title": {
+      "type": "string"
+    },
+    "away_title": {
+      "type": "string"
+    },
+    "away_logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "home_logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "venue": {
+      "type": "string"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "price": {
+      "type": "float"
+    },
+    "ticket_type": {
+      "type": "enumeration",
+      "enum": [
+        "PREMIUM",
+        "BASIC",
+        "VIP"
+      ]
+    },
+    "ticket_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
+    }
+  }
+}

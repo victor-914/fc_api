@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ticket_orders",
+  "info": {
+    "singularName": "ticket-order",
+    "pluralName": "ticket-orders",
+    "displayName": "Ticket_order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "customer_name": {
+      "type": "string"
+    },
+    "customer_email": {
+      "type": "email"
+    },
+    "customer_phoneNumber": {
+      "type": "biginteger"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "fulfilled",
+        "cancelled",
+        "refunding",
+        "refunded"
+      ]
+    }
+  }
+}

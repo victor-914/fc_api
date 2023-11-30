@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "teammates",
+  "info": {
+    "singularName": "teammate",
+    "pluralName": "teammates",
+    "displayName": "teammate"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "position_occupied": {
+      "type": "string"
+    },
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

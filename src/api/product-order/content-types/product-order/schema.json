@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product_orders",
+  "info": {
+    "singularName": "product-order",
+    "pluralName": "product-orders",
+    "displayName": "product_order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "customer_name": {
+      "type": "string"
+    },
+    "customer_email": {
+      "type": "email"
+    },
+    "total_price": {
+      "type": "float"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "fulfilled",
+        "cancelled",
+        "refunding",
+        "refunded"
+      ]
+    },
+    "date": {
+      "type": "date"
+    },
+    "customer_phoneNumber": {
+      "type": "biginteger"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "inversedBy": "product_orders"
+    },
+    "users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "product_order"
+    },
+    "quantity": {
+      "type": "biginteger"
+    }
+  }
+}

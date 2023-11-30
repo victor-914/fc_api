@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "matches",
+  "info": {
+    "singularName": "match",
+    "pluralName": "matches",
+    "displayName": "match",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "homeTeamTitle": {
+      "type": "string",
+      "required": false,
+      "default": "title"
+    },
+    "awayTeamTitle": {
+      "type": "string"
+    },
+    "away_score": {
+      "type": "string"
+    },
+    "home_score": {
+      "type": "string"
+    },
+    "venue": {
+      "type": "string"
+    },
+    "away_img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "home_img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
+    },
+    "title": {
+      "type": "string"
+    },
+    "seo_title": {
+      "type": "uid",
+      "targetField": "title"
+    }
+  }
+}
