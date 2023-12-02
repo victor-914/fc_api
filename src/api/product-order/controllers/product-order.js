@@ -1,11 +1,11 @@
 "use strict";
-
 /**
  * product-order controller
  */
+const { v4: uuidv4 } = require("uuid");
 
 const { createCoreController } = require("@strapi/strapi").factories;
-
+// module.exports = createCoreController('api::product-order.product-order');
 module.exports = createCoreController(
   "api::product-order.product-order",
   ({ strapi }) => ({
@@ -15,21 +15,6 @@ module.exports = createCoreController(
       if (!user) {
         return ctx.unauthorized("You are not authorized!");
       }
-
-      // console.log(ctx.request.body.data);
-      // console.log(ctx.state.user, "user");
-      // console.log("order controller");
-
-      const {
-        title,
-        customer_name,
-        customer_email,
-        total_price,
-        status,
-        customer_phoneNumber,
-        quantity,
-        products,
-      } = ctx.request.body.data;
 
       try {
         //   // Charge the customer
@@ -45,15 +30,19 @@ module.exports = createCoreController(
           .service("api::product-order.product-order")
           .create({
             data: {
-              title,
-              customer_name,
-              customer_email,
-              total_price, 
-              status,
-              customer_phoneNumber,
-              quantity,
-              users: ctx.state.user.id,
-              products: products.map((item) => item.id),
+              title: ctx?.request?.body?.data?.title,
+              customer_name: ctx?.request?.body?.data?.customer_name,
+              customer_email: ctx?.request?.body?.data?.customer_email,
+              total_price: ctx?.request?.body?.data?.total_price,
+              status: ctx?.request?.body?.data?.status,
+              customer_phoneNumber:
+                ctx?.request?.body?.data?.customer_phoneNumber,
+              quantity: ctx?.request?.body?.quantity,
+              tracker_id: uuidv4(),
+              users: ctx?.state?.user?.id,
+              products: ctx.request.body?.data?.products?.map(
+                (item) => item.id
+              ),
             },
           });
         return order;

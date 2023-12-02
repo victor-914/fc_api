@@ -24,15 +24,15 @@
     "total_price": {
       "type": "float"
     },
-    "status": {
+    "shipping_status": {
       "type": "enumeration",
       "enum": [
         "pending",
         "fulfilled",
         "cancelled",
-        "refunding",
         "refunded"
-      ]
+      ],
+      "default": "pending"
     },
     "date": {
       "type": "date"
@@ -54,6 +54,30 @@
     },
     "quantity": {
       "type": "biginteger"
+    },
+    "gateway_response": {
+      "type": "string"
+    },
+    "transaction_id": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "streetAddress2": {
+      "type": "string"
+    },
+    "streetAddress": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "zipCode": {
+      "type": "string"
     }
   }
 }

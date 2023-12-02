@@ -663,15 +663,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToMany',
       'api::product-order.product-order'
     >;
-    firstname: Attribute.String;
-    lastname: Attribute.String;
-    country: Attribute.String;
-    streetAddress: Attribute.String;
-    streetAddress2: Attribute.String;
-    city: Attribute.String;
-    state: Attribute.String;
-    zipCode: Attribute.BigInteger;
-    shippingCost: Attribute.Decimal;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -729,12 +720,12 @@ export interface ApiGroupByDateGroupByDate extends Schema.CollectionType {
     singularName: 'group-by-date';
     pluralName: 'group-by-dates';
     displayName: 'group_by_date';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.Date;
     articles: Attribute.Relation<
       'api::group-by-date.group-by-date',
       'oneToMany',
@@ -754,6 +745,23 @@ export interface ApiGroupByDateGroupByDate extends Schema.CollectionType {
       'api::group-by-date.group-by-date',
       'oneToMany',
       'api::video.video'
+    >;
+    title: Attribute.Date;
+    month: Attribute.Enumeration<
+      [
+        'january,',
+        'febuary,',
+        'march,',
+        'april,',
+        'may,',
+        'june,',
+        'july,',
+        'august,',
+        'september,',
+        'october,',
+        'november,',
+        'december'
+      ]
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -913,9 +921,10 @@ export interface ApiProductOrderProductOrder extends Schema.CollectionType {
     customer_name: Attribute.String;
     customer_email: Attribute.Email;
     total_price: Attribute.Float;
-    status: Attribute.Enumeration<
-      ['pending', 'fulfilled', 'cancelled', 'refunding', 'refunded']
-    >;
+    shipping_status: Attribute.Enumeration<
+      ['pending', 'fulfilled', 'cancelled', 'refunded']
+    > &
+      Attribute.DefaultTo<'pending'>;
     date: Attribute.Date;
     customer_phoneNumber: Attribute.BigInteger;
     products: Attribute.Relation<
@@ -929,6 +938,14 @@ export interface ApiProductOrderProductOrder extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     quantity: Attribute.BigInteger;
+    gateway_response: Attribute.String;
+    transaction_id: Attribute.String;
+    country: Attribute.String;
+    state: Attribute.String;
+    streetAddress2: Attribute.String;
+    streetAddress: Attribute.String;
+    city: Attribute.String;
+    zipCode: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

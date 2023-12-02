@@ -70,33 +70,6 @@
       "relation": "manyToMany",
       "target": "api::product-order.product-order",
       "mappedBy": "users"
-    },
-    "firstname": {
-      "type": "string"
-    },
-    "lastname": {
-      "type": "string"
-    },
-    "country": {
-      "type": "string"
-    },
-    "streetAddress": {
-      "type": "string"
-    },
-    "streetAddress2": {
-      "type": "string"
-    },
-    "city": {
-      "type": "string"
-    },
-    "state": {
-      "type": "string"
-    },
-    "zipCode": {
-      "type": "biginteger"
-    },
-    "shippingCost": {
-      "type": "decimal"
     }
   }
 }
