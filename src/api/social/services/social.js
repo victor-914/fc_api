@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * match service
+ * social service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::match.match');
+module.exports = createCoreService('api::social.social');

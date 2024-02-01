@@ -663,6 +663,12 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToMany',
       'api::product-order.product-order'
     >;
+    customer_phoneNumber: Attribute.BigInteger;
+    country: Attribute.String;
+    state: Attribute.String;
+    zip_code: Attribute.BigInteger;
+    city: Attribute.String;
+    address: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -714,66 +720,41 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   };
 }
 
-export interface ApiGroupByDateGroupByDate extends Schema.CollectionType {
-  collectionName: 'group_by_dates';
+export interface ApiFixtureCountdownFixtureCountdown
+  extends Schema.CollectionType {
+  collectionName: 'fixture_countdowns';
   info: {
-    singularName: 'group-by-date';
-    pluralName: 'group-by-dates';
-    displayName: 'group_by_date';
-    description: '';
+    singularName: 'fixture-countdown';
+    pluralName: 'fixture-countdowns';
+    displayName: 'fixture_countdown';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    articles: Attribute.Relation<
-      'api::group-by-date.group-by-date',
-      'oneToMany',
-      'api::article.article'
-    >;
-    matches: Attribute.Relation<
-      'api::group-by-date.group-by-date',
-      'oneToMany',
-      'api::match.match'
-    >;
-    ticket_fixtures: Attribute.Relation<
-      'api::group-by-date.group-by-date',
-      'oneToMany',
+    title: Attribute.String;
+    home_title: Attribute.String;
+    away_title: Attribute.String;
+    away_logo: Attribute.Media;
+    home_logo: Attribute.Media;
+    venue: Attribute.String;
+    date: Attribute.DateTime;
+    ticket_fixture: Attribute.Relation<
+      'api::fixture-countdown.fixture-countdown',
+      'oneToOne',
       'api::ticket-fixture.ticket-fixture'
-    >;
-    videos: Attribute.Relation<
-      'api::group-by-date.group-by-date',
-      'oneToMany',
-      'api::video.video'
-    >;
-    title: Attribute.Date;
-    month: Attribute.Enumeration<
-      [
-        'january,',
-        'febuary,',
-        'march,',
-        'april,',
-        'may,',
-        'june,',
-        'july,',
-        'august,',
-        'september,',
-        'october,',
-        'november,',
-        'december'
-      ]
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::group-by-date.group-by-date',
+      'api::fixture-countdown.fixture-countdown',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::group-by-date.group-by-date',
+      'api::fixture-countdown.fixture-countdown',
       'oneToOne',
       'admin::user'
     > &
@@ -781,44 +762,31 @@ export interface ApiGroupByDateGroupByDate extends Schema.CollectionType {
   };
 }
 
-export interface ApiMatchMatch extends Schema.CollectionType {
-  collectionName: 'matches';
+export interface ApiLatestVideoLatestVideo extends Schema.CollectionType {
+  collectionName: 'latest_videos';
   info: {
-    singularName: 'match';
-    pluralName: 'matches';
-    displayName: 'match';
-    description: '';
+    singularName: 'latest-video';
+    pluralName: 'latest-videos';
+    displayName: 'latestHighlight';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    homeTeamTitle: Attribute.String & Attribute.DefaultTo<'title'>;
-    awayTeamTitle: Attribute.String;
-    away_score: Attribute.String;
-    home_score: Attribute.String;
-    venue: Attribute.String;
-    away_img: Attribute.Media;
-    home_img: Attribute.Media;
-    date: Attribute.DateTime;
-    articles: Attribute.Relation<
-      'api::match.match',
-      'oneToMany',
-      'api::article.article'
-    >;
     title: Attribute.String;
-    seo_title: Attribute.UID<'api::match.match', 'title'>;
+    url: Attribute.String;
+    description: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::match.match',
+      'api::latest-video.latest-video',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::match.match',
+      'api::latest-video.latest-video',
       'oneToOne',
       'admin::user'
     > &
@@ -882,11 +850,9 @@ export interface ApiProductProduct extends Schema.CollectionType {
     gender: Attribute.Enumeration<['M', 'F']>;
     size: Attribute.Enumeration<['S', 'M', 'L', 'XL', 'XXL']>;
     slug: Attribute.UID<'api::product.product', 'title'>;
-    product_orders: Attribute.Relation<
-      'api::product.product',
-      'manyToMany',
-      'api::product-order.product-order'
-    >;
+    withinEnugu: Attribute.Float;
+    outsideEnugu: Attribute.Float;
+    internationlOrder: Attribute.Float;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -918,34 +884,25 @@ export interface ApiProductOrderProductOrder extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String;
-    customer_name: Attribute.String;
-    customer_email: Attribute.Email;
     total_price: Attribute.Float;
     shipping_status: Attribute.Enumeration<
       ['pending', 'fulfilled', 'cancelled', 'refunded']
     > &
       Attribute.DefaultTo<'pending'>;
-    date: Attribute.Date;
-    customer_phoneNumber: Attribute.BigInteger;
-    products: Attribute.Relation<
-      'api::product-order.product-order',
-      'manyToMany',
-      'api::product.product'
-    >;
     users: Attribute.Relation<
       'api::product-order.product-order',
       'manyToMany',
       'plugin::users-permissions.user'
     >;
-    quantity: Attribute.BigInteger;
     gateway_response: Attribute.String;
-    transaction_id: Attribute.String;
-    country: Attribute.String;
-    state: Attribute.String;
-    streetAddress2: Attribute.String;
-    streetAddress: Attribute.String;
-    city: Attribute.String;
-    zipCode: Attribute.String;
+    gatewayRef_id: Attribute.String;
+    session_id: Attribute.String;
+    quantity: Attribute.Integer;
+    gender: Attribute.Enumeration<['M', 'F', 'K']>;
+    size: Attribute.Enumeration<['S', 'M', 'L', 'XL']>;
+    portal: Attribute.Enumeration<['IOS', 'ANDROID', 'WEB']>;
+    price: Attribute.Float;
+    email: Attribute.Email;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -957,6 +914,37 @@ export interface ApiProductOrderProductOrder extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product-order.product-order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSocialSocial extends Schema.CollectionType {
+  collectionName: 'socials';
+  info: {
+    singularName: 'social';
+    pluralName: 'socials';
+    displayName: 'social';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    url: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::social.social',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::social.social',
       'oneToOne',
       'admin::user'
     > &
@@ -1026,54 +1014,28 @@ export interface ApiTicketFixtureTicketFixture extends Schema.CollectionType {
       'oneToMany',
       'api::article.article'
     >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
+    away_score: Attribute.Integer;
+    home_score: Attribute.String;
+    isTicketAvailable: Attribute.Boolean;
+    videos: Attribute.Relation<
       'api::ticket-fixture.ticket-fixture',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::ticket-fixture.ticket-fixture',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTicketOrderTicketOrder extends Schema.CollectionType {
-  collectionName: 'ticket_orders';
-  info: {
-    singularName: 'ticket-order';
-    pluralName: 'ticket-orders';
-    displayName: 'Ticket_order';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    customer_name: Attribute.String;
-    customer_email: Attribute.Email;
-    customer_phoneNumber: Attribute.BigInteger;
-    status: Attribute.Enumeration<
-      ['pending', 'fulfilled', 'cancelled', 'refunding', 'refunded']
+      'oneToMany',
+      'api::video.video'
     >;
+    againstWhom: Attribute.String;
+    symbol: Attribute.Enumeration<['A', 'H']>;
+    againstWhom_logo: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::ticket-order.ticket-order',
+      'api::ticket-fixture.ticket-fixture',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::ticket-order.ticket-order',
+      'api::ticket-fixture.ticket-fixture',
       'oneToOne',
       'admin::user'
     > &
@@ -1132,14 +1094,14 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::article.article': ApiArticleArticle;
-      'api::group-by-date.group-by-date': ApiGroupByDateGroupByDate;
-      'api::match.match': ApiMatchMatch;
+      'api::fixture-countdown.fixture-countdown': ApiFixtureCountdownFixtureCountdown;
+      'api::latest-video.latest-video': ApiLatestVideoLatestVideo;
       'api::player.player': ApiPlayerPlayer;
       'api::product.product': ApiProductProduct;
       'api::product-order.product-order': ApiProductOrderProductOrder;
+      'api::social.social': ApiSocialSocial;
       'api::teammate.teammate': ApiTeammateTeammate;
       'api::ticket-fixture.ticket-fixture': ApiTicketFixtureTicketFixture;
-      'api::ticket-order.ticket-order': ApiTicketOrderTicketOrder;
       'api::video.video': ApiVideoVideo;
     }
   }

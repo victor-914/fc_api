@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fixture_countdowns",
+  "info": {
+    "singularName": "fixture-countdown",
+    "pluralName": "fixture-countdowns",
+    "displayName": "fixture_countdown"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "home_title": {
+      "type": "string"
+    },
+    "away_title": {
+      "type": "string"
+    },
+    "away_logo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "home_logo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "venue": {
+      "type": "string"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "ticket_fixture": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::ticket-fixture.ticket-fixture"
+    }
+  }
+}

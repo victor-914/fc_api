@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * match router
+ * social router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::match.match');
+module.exports = createCoreRouter('api::social.social');

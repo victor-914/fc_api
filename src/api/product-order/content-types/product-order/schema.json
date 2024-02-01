@@ -15,12 +15,6 @@
     "title": {
       "type": "string"
     },
-    "customer_name": {
-      "type": "string"
-    },
-    "customer_email": {
-      "type": "email"
-    },
     "total_price": {
       "type": "float"
     },
@@ -34,50 +28,54 @@
       ],
       "default": "pending"
     },
-    "date": {
-      "type": "date"
-    },
-    "customer_phoneNumber": {
-      "type": "biginteger"
-    },
-    "products": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::product.product",
-      "inversedBy": "product_orders"
-    },
     "users": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
       "inversedBy": "product_order"
     },
-    "quantity": {
-      "type": "biginteger"
-    },
     "gateway_response": {
       "type": "string"
     },
-    "transaction_id": {
+    "gatewayRef_id": {
       "type": "string"
     },
-    "country": {
+    "session_id": {
       "type": "string"
     },
-    "state": {
-      "type": "string"
+    "quantity": {
+      "type": "integer"
     },
-    "streetAddress2": {
-      "type": "string"
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "M",
+        "F",
+        "K"
+      ]
     },
-    "streetAddress": {
-      "type": "string"
+    "size": {
+      "type": "enumeration",
+      "enum": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
     },
-    "city": {
-      "type": "string"
+    "portal": {
+      "type": "enumeration",
+      "enum": [
+        "IOS",
+        "ANDROID",
+        "WEB"
+      ]
     },
-    "zipCode": {
-      "type": "string"
+    "price": {
+      "type": "float"
+    },
+    "email": {
+      "type": "email"
     }
   }
 }

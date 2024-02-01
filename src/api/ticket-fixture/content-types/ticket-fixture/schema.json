@@ -82,6 +82,40 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::article.article"
+    },
+    "away_score": {
+      "type": "integer"
+    },
+    "home_score": {
+      "type": "string"
+    },
+    "isTicketAvailable": {
+      "type": "boolean"
+    },
+    "videos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::video.video"
+    },
+    "againstWhom": {
+      "type": "string"
+    },
+    "symbol": {
+      "type": "enumeration",
+      "enum": [
+        "A",
+        "H"
+      ]
+    },
+    "againstWhom_logo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

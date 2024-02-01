@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * match controller
+ * social controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::match.match');
+module.exports = createCoreController('api::social.social');

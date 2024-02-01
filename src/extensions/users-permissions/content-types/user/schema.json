@@ -70,6 +70,24 @@
       "relation": "manyToMany",
       "target": "api::product-order.product-order",
       "mappedBy": "users"
+    },
+    "customer_phoneNumber": {
+      "type": "biginteger"
+    },
+    "country": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip_code": {
+      "type": "biginteger"
+    },
+    "city": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
     }
   }
 }
